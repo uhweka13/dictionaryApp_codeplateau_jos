@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddwordsActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        <Button
+            android:id="@+id/bt_addwords_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_backbtn"
+            android:background="#000000"/>
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/background"
+        android:orientation="vertical">
+<!--        <TextView-->
+<!--            android:id="@+id/tv_test"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="ddddddddd"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginStart="20dp"-->
+<!--            android:textColor="@android:color/black"-->
+<!--            android:textSize="15sp"/>-->
+        <ImageView
+            android:id="@+id/im_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="70dp"
+            android:layout_gravity="center"/>
+
+        <EditText
+            android:id="@+id/et_addwords"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/edit_text_design"
+            android:hint="Enter Word"
+            android:textColorHint="#D81E35"
+            android:inputType="text"
+            android:padding="10dp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_words"/>
+
+        <EditText
+            android:id="@+id/et_words_meaning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/edit_text_design"
+            android:hint="Word Meaning"
+            android:padding="10dp"
+            android:inputType="textMultiLine"
+            android:textColorHint="#D81E35"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_word_meaning"/>
+        <Button
+            android:id="@+id/bt_addwords_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Word"
+            android:textAllCaps="false"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_design"
+            android:textColor="#ffffff"/>
+
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
