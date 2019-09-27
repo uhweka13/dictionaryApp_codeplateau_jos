@@ -53,7 +53,8 @@
             android:background="@drawable/edit_text_design"
             android:hint="Enter Word"
             android:textColorHint="#D81E35"
-            android:inputType="text"
+            android:inputType="textPersonName"
+            android:textAllCaps="false"
             android:padding="10dp"
             android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_words"/>
