@@ -29,27 +29,6 @@ class AddwordsActivity : AppCompatActivity() {
         btnAddWord.setOnClickListener(View.OnClickListener {
             inputValidation()
         })
-
-        addWordsT.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(editable: Editable) {
-
-            }
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
-            }
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                var addWordsTfinal = addWordsT.text.toString().trim()
-                if (addWordsTfinal == "--"){
-                    addWordsT.setError("Invalid Character combination")
-                }
-//
-            }
-
-        })
-
-
-
-
     }
 
     fun backToMain(){
@@ -66,65 +45,68 @@ class AddwordsActivity : AppCompatActivity() {
         val addWordsMeaningFinal:String = addWordsMeaning.text.toString().trim()
 
 
-        val firstCharacterS = addWordsFinal.substring(0, 1)
 
 
         if (addWordsFinal.isEmpty()){
             addWordsT.setError("Field Empty")
         } else if (addWordsMeaningFinal.isEmpty()){
             addWordsMeaning.setError("Empty Field")
-        }else if(firstCharacterS == "-"){
-            addWordsT.setError("Invalid")
-        }else if (firstCharacterS == "'"){
-            addWordsT.setError("Invalid")
-        } else{
+        }else{
+            val firstCharacterS = addWordsFinal.substring(0, 1)
 
-            val databaseHelper = DatabaseHelper(this)
-//            var timerCountT = findViewById<TextView>(R.id.tv_test)
-            var image_show = findViewById<ImageView>(R.id.im_image)
-
-            if (!databaseHelper.checkWord(addWordsFinal)){
-                val word = Words(wordT = addWordsFinal, meaning = addWordsMeaningFinal)
-                databaseHelper.addWords(word)
-                addWordsT.setText("")
-                addWordsMeaning.setText("")
-
-
-
-                object : CountDownTimer(800, 10) {
-
-                    override fun onTick(millisUntilFinished: Long) {
-//                        timerCountT.setText("seconds remaining: " + millisUntilFinished / 10)
-                        image_show.setImageResource(R.drawable.ic_check)
-                        image_show.visibility = View.VISIBLE
-                    }
-
-                    override fun onFinish() {
-                        image_show.visibility = View.INVISIBLE
-                    }
-                }.start()
-
-                Toast.makeText(this, "Word Added", Toast.LENGTH_LONG).show()
+            if (firstCharacterS == "-"){
+                addWordsT.setError("Invalid")
+            }else if (firstCharacterS == "'"){
+                addWordsT.setError("Invalid")
             }else{
 
-                object : CountDownTimer(800, 10) {
 
-                    override fun onTick(millisUntilFinished: Long) {
+                val databaseHelper = DatabaseHelper(this)
+//            var timerCountT = findViewById<TextView>(R.id.tv_test)
+                var image_show = findViewById<ImageView>(R.id.im_image)
+
+                if (!databaseHelper.checkWord(addWordsFinal)){
+                    val word = Words(wordT = addWordsFinal, meaning = addWordsMeaningFinal)
+                    databaseHelper.addWords(word)
+                    addWordsT.setText("")
+                    addWordsMeaning.setText("")
+
+
+
+                    object : CountDownTimer(800, 10) {
+
+                        override fun onTick(millisUntilFinished: Long) {
 //                        timerCountT.setText("seconds remaining: " + millisUntilFinished / 10)
-                        image_show.setImageResource(R.drawable.ic_clear)
-                        image_show.visibility = View.VISIBLE
-                    }
+                            image_show.setImageResource(R.drawable.ic_check)
+                            image_show.visibility = View.VISIBLE
+                        }
 
-                    override fun onFinish() {
-                        image_show.visibility = View.INVISIBLE
-                    }
-                }.start()
-                Toast.makeText(this, "Word already exist", Toast.LENGTH_LONG).show()
+                        override fun onFinish() {
+                            image_show.visibility = View.INVISIBLE
+                        }
+                    }.start()
+
+                    Toast.makeText(this, "Word Added", Toast.LENGTH_LONG).show()
+                }else{
+
+                    object : CountDownTimer(800, 10) {
+
+                        override fun onTick(millisUntilFinished: Long) {
+//                        timerCountT.setText("seconds remaining: " + millisUntilFinished / 10)
+                            image_show.setImageResource(R.drawable.ic_clear)
+                            image_show.visibility = View.VISIBLE
+                        }
+
+                        override fun onFinish() {
+                            image_show.visibility = View.INVISIBLE
+                        }
+                    }.start()
+                    Toast.makeText(this, "Word already exist", Toast.LENGTH_LONG).show()
+                }
             }
+
         }
 
     }
-
-
 
 }

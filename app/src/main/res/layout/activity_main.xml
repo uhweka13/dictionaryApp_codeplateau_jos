@@ -17,7 +17,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:focusable="true"
+            android:focusableInTouchMode="false"
+            >
 
             <EditText
                 android:id="@+id/et_search"
@@ -28,7 +31,7 @@
                 android:drawableStart="@drawable/ic_search"
                 android:layout_marginEnd="10dp"
                 android:textColor="@android:color/black"
-                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-'"
+                android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-' "
                 android:layout_marginStart="30dp"/>
         </androidx.appcompat.widget.Toolbar>
 

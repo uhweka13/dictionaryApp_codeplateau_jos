@@ -61,6 +61,7 @@ class EditTextActivity : AppCompatActivity() {
             updateWord()
         })
 
+        //display the imputed text in real time
         et_meaning.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable) {
 
@@ -78,6 +79,7 @@ class EditTextActivity : AppCompatActivity() {
 
     fun backtomain(){
         val toMainActivity = Intent(this, MainActivity::class.java)
+
         startActivity(toMainActivity)
         finish()
     }
@@ -87,35 +89,43 @@ class EditTextActivity : AppCompatActivity() {
         update_word = et_word.text.toString().trim()
         update_meaning= et_meaning.text.toString().trim()
 
-        val firstCharacterUpdate = update_word.substring(0, 1)
+
 
         if(update_word.isEmpty()){
             et_word.setError("Empty Field")
         }else if(update_meaning.isEmpty()){
             et_meaning.setError("Empty Field")
-        }else if (firstCharacterUpdate == "-"){
-            et_word.setError("Invalid Word")
-        }else if (firstCharacterUpdate == "'"){
-            et_word.setError("Invalid Word")
         } else{
-            //create the database helper instance
-            val db_helper = DatabaseHelper(this)
-            val id = intent.getIntExtra("id",-1)
+            //ensure only valid word characters are inputed in the right order
+            var firstCharacterUpdate = update_word.substring(0, 1)
+            if (firstCharacterUpdate == "-"){
+                et_word.setError("Invalid Word")
+            }else if(firstCharacterUpdate == "'"){
+                et_word.setError("Invalid Word")
+            }else{
+                //create the database helper instance
+                val db_helper = DatabaseHelper(this)
+                val id = intent.getIntExtra("id",-1)
 
-            //insert the updated values to the Words class object
-            val words = Words(id = id, wordT = update_word, meaning = update_meaning)
+                //insert the updated values to the Words class object
+                val words = Words(id = id, wordT = update_word, meaning = update_meaning)
 
-            //call the update user function of the Database helper to update the user's data
-            db_helper.updateWord(words)
+                //call the update user function of the Database helper to update the user's data
+                db_helper.updateWord(words)
 
-            //redirect the user to MainActivity
-            val toUpdate = Intent(this, MainActivity::class.java)
+                //redirect the user to MainActivity
+                val toUpdate = Intent(this, MainActivity::class.java)
 
 //            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 //            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 //            toUpdate.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(toUpdate)
-            finish()
+                startActivity(toUpdate)
+                finish()
+            }
+
+
+
+
         }
 
     }

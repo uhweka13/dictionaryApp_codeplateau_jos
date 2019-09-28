@@ -57,7 +57,8 @@
             android:textAllCaps="false"
             android:padding="10dp"
             android:drawablePadding="5dp"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'-"
+            android:imeOptions="actionNext"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'- "
             android:drawableStart="@drawable/ic_words"/>
 
         <EditText
@@ -73,7 +74,8 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:drawablePadding="5dp"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,':;-"
+            android:imeOptions="actionNext"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ,':;- "
             android:drawableStart="@drawable/ic_word_meaning"/>
         <Button
             android:id="@+id/bt_addwords_submit"

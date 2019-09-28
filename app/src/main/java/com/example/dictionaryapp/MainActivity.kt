@@ -1,5 +1,6 @@
 package com.example.dictionaryapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
@@ -9,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -40,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         //val mLayoutManager = LinearLayoutManager(this)
         allWordsRecycler.layoutManager = LinearLayoutManager(this)
         var searchIt = findViewById<EditText>(R.id.et_search)
+        searchIt.showSoftInputOnFocus = true
+//        val inputManager: InputMethodManager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+//        inputManager.hideSoftInputFromWindow(currentFocus?.windowToken, InputMethodManager.SHOW_FORCED)
 
         allWordsRecycler.setHasFixedSize(true)
 
@@ -57,19 +63,18 @@ class MainActivity : AppCompatActivity() {
 
         searchIt.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(editable: Editable) {
-                filter(editable.toString())
+
             }
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-
+                filter(" ")
             }
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
 
-//                tv_test.text = searchIt.text.toString().trim()
+                var tv_test_try = searchIt.text.toString().trim()
+                filter(tv_test_try)
             }
 
         })
-
-
 
     }
 
@@ -132,6 +137,5 @@ class MainActivity : AppCompatActivity() {
         //calling a method of the adapter class and passing the filtered list
         recyclerAdapter!!.filterList(filteredWords)
     }
-
 
 }
