@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="ExtraText">
 
 
 
@@ -49,6 +50,7 @@
             android:background="@drawable/edit_text_design"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="10dp"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-'"
             android:layout_marginStart="10dp"/>
         <EditText
             android:id="@+id/et_edit_meaning"
@@ -59,6 +61,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:inputType="textMultiLine"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-'/."
             android:layout_marginTop="15dp"/>
 
 

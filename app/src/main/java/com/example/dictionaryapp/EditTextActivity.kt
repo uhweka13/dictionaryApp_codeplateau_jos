@@ -87,11 +87,17 @@ class EditTextActivity : AppCompatActivity() {
         update_word = et_word.text.toString().trim()
         update_meaning= et_meaning.text.toString().trim()
 
+        val firstCharacterUpdate = update_word.substring(0, 1)
+
         if(update_word.isEmpty()){
             et_word.setError("Empty Field")
         }else if(update_meaning.isEmpty()){
             et_meaning.setError("Empty Field")
-        }else{
+        }else if (firstCharacterUpdate == "-"){
+            et_word.setError("Invalid Word")
+        }else if (firstCharacterUpdate == "'"){
+            et_word.setError("Invalid Word")
+        } else{
             //create the database helper instance
             val db_helper = DatabaseHelper(this)
             val id = intent.getIntExtra("id",-1)
@@ -105,9 +111,9 @@ class EditTextActivity : AppCompatActivity() {
             //redirect the user to MainActivity
             val toUpdate = Intent(this, MainActivity::class.java)
 
-            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            toUpdate.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//            toUpdate.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+//            toUpdate.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(toUpdate)
             finish()
         }

@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import com.example.dictionaryapp.helpers.DatabaseHelper
@@ -17,6 +19,7 @@ class AddwordsActivity : AppCompatActivity() {
 
         var addWords_btn = findViewById<Button>(R.id.bt_addwords_back)
         var btnAddWord = findViewById<Button>(R.id.bt_addwords_submit)
+        var addWordsT = findViewById<EditText>(R.id.et_addwords)
 
 
         addWords_btn.setOnClickListener(View.OnClickListener {
@@ -26,6 +29,26 @@ class AddwordsActivity : AppCompatActivity() {
         btnAddWord.setOnClickListener(View.OnClickListener {
             inputValidation()
         })
+
+        addWordsT.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(editable: Editable) {
+
+            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                var addWordsTfinal = addWordsT.text.toString().trim()
+                if (addWordsTfinal == "--"){
+                    addWordsT.setError("Invalid Character combination")
+                }
+//
+            }
+
+        })
+
+
+
 
     }
 
@@ -42,10 +65,18 @@ class AddwordsActivity : AppCompatActivity() {
         val addWordsFinal:String = addWordsT.text.toString().trim()
         val addWordsMeaningFinal:String = addWordsMeaning.text.toString().trim()
 
+
+        val firstCharacterS = addWordsFinal.substring(0, 1)
+
+
         if (addWordsFinal.isEmpty()){
             addWordsT.setError("Field Empty")
         } else if (addWordsMeaningFinal.isEmpty()){
             addWordsMeaning.setError("Empty Field")
+        }else if(firstCharacterS == "-"){
+            addWordsT.setError("Invalid")
+        }else if (firstCharacterS == "'"){
+            addWordsT.setError("Invalid")
         } else{
 
             val databaseHelper = DatabaseHelper(this)
